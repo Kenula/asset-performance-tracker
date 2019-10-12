@@ -2,26 +2,20 @@ from bs4 import BeautifulSoup
 from requests_html import HTMLSession
 import csv
 
+#urls that will be parsed
 urls = ['https://iaclarington.com/en/price-performance/fund?fund_id=4201&series=4401',
         'https://iaclarington.com/en/price-performance/fund?fund_id=4303&series=7400',
         'https://iaclarington.com/en/price-performance/fund?fund_id=4509',
         'https://iaclarington.com/en/price-performance/fund?fund_id=4215']
 
-# loads the webpage to allow for scraping
 session = HTMLSession()
-
 
 # handling the csv file
 csv_file = open('performance.csv', 'w', newline='')
 csv_writer = csv.writer(csv_file)
 csv_writer.writerow(["Name", "Value", "Performance Date", "Performance (1mo)", "Performance (3mo)"])
-# csv_writer.writerow('\n')
 
-
-# source = requests.get('https://iaclarington.com/en/price-performance/fund?fund_id=4201&series=4401').text
-
-
-
+#iterating through the url list
 for url in urls:
     print(url)
     response = session.get(url)
